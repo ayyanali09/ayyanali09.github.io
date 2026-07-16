@@ -1203,12 +1203,20 @@
       color: var(--white);
       font-weight: 900;
       backdrop-filter: blur(10px);
-      transition: transform 260ms ease, background 260ms ease;
+      transition: transform 260ms ease, background 260ms ease, opacity 260ms ease;
+      opacity: 0;
+      transform: translateY(8px) rotate(-12deg) scale(0.92);
+    }
+
+    .menu-grid.cards-ready .menu-card .menu-badge {
+      animation: badgeFlip 680ms cubic-bezier(0.64, 0, 0.35, 1) both;
+      animation-delay: calc(var(--i) * 80ms + 120ms);
     }
 
     .menu-card:hover .menu-badge {
       background: rgba(184, 84, 54, 0.88);
       transform: translateY(-4px) scale(1.04);
+      opacity: 1;
     }
 
     .menu-card:hover h3 {
@@ -2126,11 +2134,26 @@
     @keyframes menuCardIn {
       from {
         opacity: 0;
-        transform: translateY(30px) rotateX(6deg) scale(0.98);
+        transform: translateY(30px) rotateX(8deg) scale(0.96);
       }
       to {
         opacity: 1;
         transform: translateY(0) rotateX(0) scale(1);
+      }
+    }
+
+    @keyframes badgeFlip {
+      from {
+        opacity: 0;
+        transform: translateY(18px) rotate(-22deg) scale(0.76);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(-4px) rotate(12deg) scale(1.04);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
       }
     }
 
