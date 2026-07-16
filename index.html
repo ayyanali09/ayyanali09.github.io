@@ -472,12 +472,13 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       backdrop-filter: blur(14px);
-      animation: floatTag 6s ease-in-out infinite;
+      animation: floatTag 6s ease-in-out infinite, glowBadge 8s ease-in-out infinite alternate;
     }
 
     .hero-tags span:nth-child(1) {
       top: 26%;
       right: 9%;
+      animation-delay: 0s;
     }
 
     .hero-tags span:nth-child(2) {
@@ -490,6 +491,21 @@
       right: 5%;
       bottom: 18%;
       animation-delay: -3.6s;
+    }
+
+    .hero-tags span::after {
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      content: "";
+      background: rgba(216, 162, 70, 0.85);
+      box-shadow: 0 0 12px rgba(216, 162, 70, 0.45);
+      opacity: 0.8;
+      animation: pulseDot 2.6s ease-in-out infinite;
     }
 
     .vip-orbit {
@@ -698,7 +714,7 @@
       max-width: 650px;
       color: rgba(255, 255, 255, 0.78);
       font-size: clamp(1rem, 1.8vw, 1.24rem);
-      animation: riseIn 900ms 240ms ease both;
+      animation: riseIn 900ms 240ms ease both, copyPulse 18s ease-in-out infinite alternate;
     }
 
     .hero-actions {
@@ -850,6 +866,77 @@
         linear-gradient(180deg, var(--cream), var(--paper));
     }
 
+    .feature-section {
+      background: var(--paper);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 22px 48px rgba(21, 21, 21, 0.08);
+      transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+      border: 1px solid rgba(21, 21, 21, 0.06);
+      animation: cardRise 880ms ease both;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 32px 78px rgba(21, 21, 21, 0.16);
+    }
+
+    .feature-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: rgba(216, 162, 70, 0.1);
+      color: var(--terracotta);
+      font-weight: 900;
+      font-size: 0.92rem;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 14px;
+      font-size: clamp(1.2rem, 2.3vw, 1.7rem);
+      line-height: 1.15;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.75;
+    }
+
+    .feature-note {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--terracotta);
+      background: rgba(248, 241, 230, 0.9);
+      color: var(--charcoal);
+      border-radius: 16px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .feature-note strong {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
@@ -915,6 +1002,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       transition: transform 420ms ease, box-shadow 420ms ease;
+      animation: aboutPhotoFloat 18s ease-in-out infinite alternate;
     }
 
     .about-photo img {
@@ -1035,6 +1123,7 @@
       isolation: isolate;
       transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
       will-change: transform;
+      animation: cardFloat 12s ease-in-out infinite alternate;
     }
 
     .menu-card::before {
@@ -1277,7 +1366,7 @@
       aspect-ratio: 4 / 5;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      animation: photoDrift 8600ms ease-in-out infinite alternate;
+      animation: photoDrift 8600ms ease-in-out infinite alternate, reviewPulse 16s ease-in-out infinite alternate;
     }
 
     .review-media img {
@@ -1296,6 +1385,7 @@
       border-radius: var(--radius);
       background: var(--white);
       box-shadow: var(--shadow);
+      animation: reviewGlow 14s ease-in-out infinite alternate;
     }
 
     .review-panel::before {
@@ -1595,6 +1685,7 @@
       padding: 44px 0;
       background: #111;
       color: var(--white);
+      animation: footerGlow 20s ease-in-out infinite alternate;
     }
 
     .footer-grid {
@@ -1886,6 +1977,89 @@
       }
       to {
         box-shadow: 0 24px 58px rgba(216, 162, 70, 0.58);
+      }
+    }
+
+    @keyframes reviewPulse {
+      from {
+        transform: translateY(0px);
+        box-shadow: 0 32px 72px rgba(21, 21, 21, 0.14);
+      }
+      to {
+        transform: translateY(-4px);
+        box-shadow: 0 36px 86px rgba(21, 21, 21, 0.24);
+      }
+    }
+
+    @keyframes copyPulse {
+      from {
+        opacity: 0.96;
+        transform: translateY(0px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(-4px);
+      }
+    }
+
+    @keyframes aboutPhotoFloat {
+      from {
+        transform: translateY(0px) rotate(0deg);
+      }
+      to {
+        transform: translateY(-10px) rotate(-0.2deg);
+      }
+    }
+
+    @keyframes footerGlow {
+      from {
+        box-shadow: inset 0 0 0 rgba(255, 255, 255, 0);
+      }
+      to {
+        box-shadow: inset 0 0 32px rgba(255, 255, 255, 0.04);
+      }
+    }
+
+    @keyframes reviewGlow {
+      from {
+        transform: translateY(0);
+        box-shadow: 0 32px 72px rgba(21, 21, 21, 0.12);
+      }
+      to {
+        transform: translateY(-6px);
+        box-shadow: 0 44px 96px rgba(21, 21, 21, 0.18);
+      }
+    }
+
+    @keyframes glowBadge {
+      from {
+        box-shadow: 0 0 0 rgba(216, 162, 70, 0.16);
+      }
+      to {
+        box-shadow: 0 0 24px rgba(216, 162, 70, 0.18);
+      }
+    }
+
+    @keyframes pulseDot {
+      0%,
+      100% {
+        transform: translateY(-50%) scale(0.9);
+        opacity: 0.75;
+      }
+      50% {
+        transform: translateY(-50%) scale(1.18);
+        opacity: 1;
+      }
+    }
+
+    @keyframes cardRise {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
@@ -2624,6 +2798,36 @@
           <figure class="about-photo">
             <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80" alt="Elegant restaurant interior with warm lighting">
           </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-section section" aria-label="What makes us special">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Our Craft</span>
+          <h2>Little gestures that make every meal feel personal.</h2>
+          <p>From hand-kneaded breads to sauces finished with fresh herbs, every plate is built with time, care, and a human touch.</p>
+        </div>
+        <div class="feature-grid reveal">
+          <article class="feature-card">
+            <div class="feature-badge">01</div>
+            <h3>House-baked breads and warm baskets</h3>
+            <p>We bake every bread and roll right here, serving it warm with smoked butter and a sprinkle of sea salt so it tastes like a home table.</p>
+            <div class="feature-note"><strong>Chef’s note</strong> The bread comes straight from a stone oven, never from a packet.</div>
+          </article>
+          <article class="feature-card">
+            <div class="feature-badge">02</div>
+            <h3>Made-from-scratch sauces and chutneys</h3>
+            <p>Every sauce, chutney and dressing is prepared in small batches, with fresh spices and smart seasoning instead of shortcuts.</p>
+            <div class="feature-note"><strong>Our promise</strong> Fresh, layered flavor in every bite—no jarred condiments allowed.</div>
+          </article>
+          <article class="feature-card">
+            <div class="feature-badge">03</div>
+            <h3>Seasonal plates with a gentle edge</h3>
+            <p>Menus shift with harvest and spice: crisp greens, mellow saffron, grilled vegetables, and slow-smoked meats that feel both modern and warm.</p>
+            <div class="feature-note"><strong>For the table</strong> A carefully chosen menu that feels rich, but never fussy.</div>
+          </article>
         </div>
       </div>
     </section>
