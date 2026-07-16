@@ -1,0 +1,6 @@
+# Ignore generated Cloudflare logs and local runtime files
+cloud-out.txt
+cloud-err.txt
+*.log
+.DS_Store
+Thumbs.db
